@@ -1,6 +1,6 @@
 # Predicting Medical Insurance Costs with Machine Learning
 
-CSC340 Artificial Intelligence project, School of Information Technology, KMUTT.
+CSC340 Artificial Intelligence individual project, School of Information Technology, KMUTT.
 
 **Research question:** Can machine learning models predict an individual's medical insurance charges more accurately than traditional methods?
 
