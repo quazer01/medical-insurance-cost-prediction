@@ -1,0 +1,10 @@
+feature,mean |SHAP|
+smoker_yes,7841.1064
+age,3244.4531
+bmi,2141.0955
+children,740.97363
+region_northeast,129.99384
+sex_male,122.45993
+region_southwest,113.56729
+region_northwest,43.111946
+region_southeast,13.100794
