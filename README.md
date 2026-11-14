@@ -6,10 +6,6 @@ CSC340 Artificial Intelligence project, School of Information Technology, KMUTT.
 
 **Answer:** Yes. The best AI model (XGBoost) had a test RMSE of **$4,207**, which is **29.4% lower** than the best traditional method (linear regression, $5,956).
 
-## Team
-
-- Prin Phakanon (67130500845)
-- [Name 2]
 
 ## Dataset
 
