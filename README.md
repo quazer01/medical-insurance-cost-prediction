@@ -1,11 +1,14 @@
 # Predicting Medical Insurance Costs with Machine Learning
 
-CSC340 Artificial Intelligence individual project, School of Information Technology, KMUTT.
+CSC340 Artificial Intelligence project, School of Information Technology, KMUTT.
 
 **Research question:** Can machine learning models predict an individual's medical insurance charges more accurately than traditional methods?
 
 **Answer:** Yes. The best AI model (XGBoost) had a test RMSE of **$4,207**, which is **29.4% lower** than the best traditional method (linear regression, $5,956).
 
+## Team
+
+- Prin Phakanon (67130500845)
 
 ## Dataset
 
