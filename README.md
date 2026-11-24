@@ -9,6 +9,7 @@ CSC340 Artificial Intelligence project, School of Information Technology, KMUTT.
 ## Team
 
 - Prin Phakanon (67130500845)
+- Supphanyu Phaniphad (67130500866)
 
 ## Dataset
 
@@ -96,7 +97,32 @@ Smoking is by far the most important factor, followed by age and BMI. Sex and re
 - The MLP performs worse than the tree models, likely because the dataset is small.
 - The traditional methods make large errors for people with high charges.
 
-## How to run
+## Run the demo
+
+There are two demos. Both use the trained XGBoost model (test RMSE $4,207).
+
+### Option 1: Web demo (no installation)
+
+Open `docs/index.html` in any web browser. Everything runs in the browser.
+
+To get a public link with GitHub Pages: in this repository go to **Settings → Pages**, set **Source** to "Deploy from a branch", choose branch `main` and folder `/docs`, then click **Save**. After a minute the demo is live at `https://<your-username>.github.io/<repository-name>/`.
+
+### Option 2: Gradio app (Python)
+
+The trained model (`model.joblib`) is included, so you don't need the dataset to run the app.
+
+```bash
+pip install -r requirements.txt
+python app.py
+```
+
+Then open http://127.0.0.1:7860 in your browser. Enter age, sex, BMI, children, smoker and region to get a predicted cost and the top 3 factors behind it.
+
+Example: a 45-year-old male smoker with BMI 36 (northeast, no children) gets a predicted **$42,992**; smoking raised the estimate by $22,503 compared with the average prediction of $13,004.
+
+> Use the exact library versions in `requirements.txt`; a different scikit-learn or XGBoost version may fail to load `model.joblib`. To rebuild the model yourself, put `insurance.csv` in this folder and run `python train_model.py`.
+
+## How to run the experiment
 
 1. Download `insurance.csv` from [Kaggle](https://www.kaggle.com/datasets/mirichoi0218/insurance) and put it in the same folder as `experiment.py`.
 2. Install the libraries:
@@ -114,7 +140,13 @@ Results are saved to the `results/` folder. With the fixed random seed, the numb
 
 ```
 .
+├── app.py                 # Gradio demo
+├── model.joblib           # Trained XGBoost model used by the demos
+├── train_model.py         # Retrains model.joblib from insurance.csv
 ├── experiment.py          # Full experiment: data split, tuning, evaluation, SHAP
+├── requirements.txt
+├── docs/
+│   └── index.html         # Web demo (works offline and on GitHub Pages)
 ├── README.md
 └── results/
     ├── cv_results.csv     # 10-fold cross-validation scores

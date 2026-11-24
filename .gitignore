@@ -1,4 +1,9 @@
-insurance.csv
 __pycache__/
 *.pyc
 .venv/
+venv/
+.DS_Store
+.gradio/
+flagged/
+# dataset: download from Kaggle (not redistributed)
+insurance.csv
