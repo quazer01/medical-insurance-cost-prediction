@@ -1,9 +1,14 @@
 """
-Train the final model for the demo and save it to model.joblib.
+Train the final model for the demo and save it to preprocessor.joblib and xgb_model.json.
 
 Uses XGBoost with the best settings found by grid search in experiment.py,
 trained on exactly the same 80% training split (same seed, same duplicate removal),
 so the saved model matches the model evaluated in experiment.py.
+
+The XGBoost model is saved with save_model (JSON) instead of being pickled, because
+a pickled XGBoost model contains a random-number state whose format depends on the
+operating system (a model pickled on Linux failed to load on Windows with
+"input stream corrupted"). The JSON file has no such state and loads on any OS.
 
 How to run:
     python train_model.py
@@ -38,8 +43,9 @@ def main():
     pred = model.predict(X_test)
     print(f"Test RMSE ${rmse(y_test, pred):,.0f} | MAE ${mean_absolute_error(y_test, pred):,.0f} | R2 {r2_score(y_test, pred):.3f}")
 
-    joblib.dump(model, "model.joblib")
-    print("Saved model.joblib")
+    joblib.dump(model.named_steps["prep"], "preprocessor.joblib")
+    model.named_steps["model"].save_model("xgb_model.json")
+    print("Saved preprocessor.joblib and xgb_model.json")
 
 
 if __name__ == "__main__":

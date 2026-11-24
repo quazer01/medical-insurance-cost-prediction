@@ -6,7 +6,7 @@ the trained XGBoost model, plus the 3 factors that pushed the prediction up or d
 (SHAP values).
 
 How to run:
-    1. python train_model.py      (creates model.joblib)
+    1. python train_model.py      (creates preprocessor.joblib and xgb_model.json)
     2. python app.py              (opens the demo at http://127.0.0.1:7860)
 """
 
@@ -14,9 +14,13 @@ import gradio as gr
 import joblib
 import pandas as pd
 import shap
+from sklearn.pipeline import Pipeline
+from xgboost import XGBRegressor
 
-model = joblib.load("model.joblib")
-prep = model.named_steps["prep"]
+prep = joblib.load("preprocessor.joblib")
+xgb_model = XGBRegressor()
+xgb_model.load_model("xgb_model.json")
+model = Pipeline([("prep", prep), ("model", xgb_model)])
 explainer = shap.TreeExplainer(model.named_steps["model"])
 feature_names = [n.split("__")[-1] for n in prep.get_feature_names_out()]
 

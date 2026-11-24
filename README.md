@@ -109,7 +109,7 @@ To get a public link with GitHub Pages: in this repository go to **Settings → 
 
 ### Option 2: Gradio app (Python)
 
-The trained model (`model.joblib`) is included, so you don't need the dataset to run the app.
+The trained model (`preprocessor.joblib` and `xgb_model.json`) is included, so you don't need the dataset to run the app. You need Python 3.12 or newer.
 
 ```bash
 pip install -r requirements.txt
@@ -120,7 +120,7 @@ Then open http://127.0.0.1:7860 in your browser. Enter age, sex, BMI, children, 
 
 Example: a 45-year-old male smoker with BMI 36 (northeast, no children) gets a predicted **$42,992**; smoking raised the estimate by $22,503 compared with the average prediction of $13,004.
 
-> Use the exact library versions in `requirements.txt`; a different scikit-learn or XGBoost version may fail to load `model.joblib`. To rebuild the model yourself, put `insurance.csv` in this folder and run `python train_model.py`.
+> Use the exact library versions in `requirements.txt`; a different scikit-learn version may fail to load `preprocessor.joblib`. To rebuild the model yourself, put `insurance.csv` in this folder and run `python train_model.py`.
 
 ## How to run the experiment
 
@@ -141,8 +141,9 @@ Results are saved to the `results/` folder. With the fixed random seed, the numb
 ```
 .
 ├── app.py                 # Gradio demo
-├── model.joblib           # Trained XGBoost model used by the demos
-├── train_model.py         # Retrains model.joblib from insurance.csv
+├── preprocessor.joblib    # Fitted input preprocessing used by the Gradio app
+├── xgb_model.json         # Trained XGBoost model used by the Gradio app
+├── train_model.py         # Retrains both model files from insurance.csv
 ├── experiment.py          # Full experiment: data split, tuning, evaluation, SHAP
 ├── requirements.txt
 ├── docs/
